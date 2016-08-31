@@ -6,7 +6,7 @@ module OmniAuth
     class MapsMeToken
       include OmniAuth::Strategy
 
-      option :name, 'mapsme-token'
+      option :name, 'mapsme_token'
 
       args [:client_id, :client_secret]
 
@@ -15,8 +15,8 @@ module OmniAuth
 
       option :client_options, {
         :site => 'https://passport.maps.me',
-        :authorize_url => 'https://passport.maps.me/authorize',
-        :token_url => 'https://passport.maps.me/access_token'
+        :authorize_url => 'https://passport.maps.me/oauth/authorize',
+        :token_url => 'https://passport.maps.me/oauth/access_token'
       }
 
       option :access_token_options, {
@@ -31,8 +31,7 @@ module OmniAuth
       info do
         prune!({
           'email' => raw_info['email'],
-          'name' => raw_info['name'],
-          'verified' => raw_info['verified']
+          'name' => raw_info['name']
         })
       end
 
@@ -51,7 +50,7 @@ module OmniAuth
       end
 
       def raw_info
-        @raw_info ||= access_token.get('/me', info_options).parsed || {}
+        @raw_info ||= access_token.get('/user', info_options).parsed || {}
       end
 
       def info_options
