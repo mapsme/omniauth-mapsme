@@ -1,5 +1,9 @@
-module Omniauth
-  module Mapsme
-    VERSION = "0.1.1"
+module OmniAuth
+  module MapsMe
+    VERSION = "1.0.0"
+  end
+
+  module MapsMeToken
+    VERSION = MapsMe::VERSION
   end
 end
