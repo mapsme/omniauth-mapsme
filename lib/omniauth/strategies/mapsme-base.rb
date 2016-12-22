@@ -1,7 +1,7 @@
 module OmniAuth
   module Strategies
     module MapsMeBase
-      MAPSME_BASE = 'http://yershov.passport.map6.devmail.ru'
+      MAPSME_BASE = 'http://passport.maps.me'
 
       MAPSME_CLIENT_OPTIONS = {
         :site => MAPSME_BASE,
