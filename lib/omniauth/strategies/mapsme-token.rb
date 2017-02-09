@@ -124,4 +124,4 @@ module OmniAuth
   end
 end
 
-OmniAuth.config.add_camelization 'mapsme', 'MapsMe'
+OmniAuth.config.add_camelization 'mapsme_token', 'MapsMeToken'
