@@ -10,12 +10,12 @@ module OmniAuth
 
       option :client_options, MAPSME_CLIENT_OPTIONS
 
-      uid { raw_info['uid'].to_s }
+      uid { raw_info['username'] }
 
       info do
         {
           'email' => raw_info['email'],
-          'name' => raw_info['name']
+          'name' => extract_name(raw_info)
         }
       end
 
@@ -25,12 +25,12 @@ module OmniAuth
 
       def authorize_params
         super.tap do |params|
-          params[:scope] = 'user mail'
+          params[:scope] = MAPSME_DEFAULT_SCOPE
         end
       end
 
       def raw_info
-        @raw_info ||= access_token.get('/user').parsed || {}
+        @raw_info ||= access_token.get(MAPSME_USER_DETAILS).parsed || {}
       end
 
       # Fix omniauth-oauth2 issue https://github.com/intridea/omniauth-oauth2/issues/76
